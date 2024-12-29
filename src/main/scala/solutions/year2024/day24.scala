@@ -89,8 +89,8 @@ object day24 extends Day[(Map[String, Boolean], Seq[Gate]), Long, String](Year24
   override def partTwo(input: (Map[String, Boolean], Seq[Gate])): String = input match
     case (wires, gates) => {
       val swaps = Seq(("hdt", "z05"), ("gbf", "z09"), ("nbf", "z30"), ("mht", "jgt"))
-      val swapMap = (flip(swaps) ++ swaps).toMap
-      val swappedWires = swapWires(swapMap, gates)
+//      val swapMap = (flip(swaps) ++ swaps).toMap
+//      val swappedWires = swapWires(swapMap, gates)
 
 
 //      (1 to 44).foreach(num =>
