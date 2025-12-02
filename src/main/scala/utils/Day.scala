@@ -1,13 +1,16 @@
 package utils
 
 enum Year(val name: String):
+  case Year25 extends Year("2025")
   case Year24 extends Year("2024")
   case Year17 extends Year("2017")
 
 abstract class Day[A, B, C](year: Year, day: Int) {
-  private def filePath : String = s"year${year.name}/day$day.txt"
+  private def filePath: String = s"year${year.name}/day$day.txt"
 
-  private def readFile: String = FileHandler.readFile(filePath)
+  private def readPuzzleInput: String = FileHandler.readFile(filePath)
+
+  protected def readParsedPuzzleInput = parseInput(readPuzzleInput)
 
   def parseInput(input: String): A
 
@@ -17,12 +20,17 @@ abstract class Day[A, B, C](year: Year, day: Int) {
 
   def main(args: Array[String]): Unit = {
     println(s"Running: Year ${year.name} / Day $day")
+    val parsedInput = readParsedPuzzleInput
 
-    val (runtimeOne, resultOne) = timed { partOne(parseInput(readFile)) }
+    val (runtimeOne, resultOne) = timed {
+      partOne(parsedInput)
+    }
     println(s"Result One: $resultOne Runtime: ${runtimeOne}ms")
 
     try {
-      val (runtimeTwo, resultTwo) = timed { partTwo(parseInput(readFile)) }
+      val (runtimeTwo, resultTwo) = timed {
+        partTwo(parsedInput)
+      }
       println(s"Result Two: $resultTwo Runtime: ${runtimeTwo}ms")
     } catch
       case _: NotImplementedError => println("Result Two: NA")

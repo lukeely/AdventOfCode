@@ -4,6 +4,7 @@ import utils.{Day, Year}
 import utils.Year.Year24
 
 import scala.util.matching.Regex
+import scala.jdk.CollectionConverters._
 
 object day04 extends Day[Seq[Seq[Char]], Int, Int](Year24, 4) {
   private val xmasSearch = "XMAS".r
@@ -56,5 +57,5 @@ object day04 extends Day[Seq[Seq[Char]], Int, Int](Year24, 4) {
                          |MAMMMXMMMM
                          |MXMXAXMASX""".stripMargin
 
-  def parseInput(input: String): Seq[Seq[Char]] = input.lines.toSeq.map(_.toList)
+  def parseInput(input: String): Seq[Seq[Char]] = input.lines.iterator().asScala.toSeq.map(_.toList)
 }

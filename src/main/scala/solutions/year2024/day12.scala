@@ -5,6 +5,7 @@ import utils.Year.Year24
 
 import scala.annotation.targetName
 import scala.collection.mutable.Set as MSet
+import scala.jdk.CollectionConverters._
 
 object day12 extends Day[Seq[Seq[Char]], Int, Int](Year24, 12) {
   private val sample = """AAAA
@@ -36,7 +37,7 @@ object day12 extends Day[Seq[Seq[Char]], Int, Int](Year24, 12) {
                           |ABBAAA
                           |AAAAAA""".stripMargin
 
-  def parseInput(input: String): Seq[Seq[Char]] = input.lines.map(_.toList.toSeq).toSeq
+  def parseInput(input: String): Seq[Seq[Char]] = input.lines.map(_.toList.toSeq).iterator().asScala.toSeq
 
   private def searchArea(x: Int, y: Int, c: Char, grid: Seq[Seq[Char]], visited: MSet[(Int, Int)] = MSet()): Set[(Int, Int)] = {
     if (x < 0 || y < 0 || x >= grid.head.size || y >= grid.size || grid(y)(x) != c) return Set()
