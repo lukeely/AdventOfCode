@@ -45,7 +45,7 @@ object day01 extends Day[Seq[Turn], Int, Int](Year25, 1) {
     .map(turn => turn.direction.convertDegrees(turn.degree))
     .scanLeft((startingDegree, 0)) { case ((current, _), change) =>
       val next = current + change
-      val passes = (if (change > 0 || current == 0) next else totalDegrees - current - change).abs / totalDegrees
+      val passes = (if (change > 0 || current == 0) next else totalDegrees - next).abs / totalDegrees
 
       (Math.floorMod(next, totalDegrees), passes)
     }
