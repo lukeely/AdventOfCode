@@ -20,16 +20,17 @@ abstract class Day[A, B, C](year: Year, day: Int) {
 
   def main(args: Array[String]): Unit = {
     println(s"Running: Year ${year.name} / Day $day")
-    val parsedInput = readParsedPuzzleInput
+    val parsedInput1 = readParsedPuzzleInput
+    val parsedInput2 = readParsedPuzzleInput
 
     val (runtimeOne, resultOne) = timed {
-      partOne(parsedInput)
+      partOne(parsedInput1)
     }
     println(s"Result One: $resultOne Runtime: ${runtimeOne}ms")
 
     try {
       val (runtimeTwo, resultTwo) = timed {
-        partTwo(parsedInput)
+        partTwo(parsedInput2)
       }
       println(s"Result Two: $resultTwo Runtime: ${runtimeTwo}ms")
     } catch

@@ -3,8 +3,6 @@ package solutions.year2025
 import utils.Day
 import utils.Year.Year25
 
-import scala.jdk.CollectionConverters.*
-
 enum Direction:
   case Right
   case Left
@@ -39,10 +37,8 @@ object day01 extends Day[Seq[Turn], Int, Int](Year25, 1) {
 
 
   override def parseInput(input: String): Seq[Turn] = input
-    .lines()
+    .linesIterator
     .map(line => Turn(Direction.fromChar(line.head), line.tail.toInt))
-    .iterator()
-    .asScala
     .toSeq
 
   private def positions(input: Seq[Turn]): Seq[(Int, Int)] = input
@@ -54,7 +50,7 @@ object day01 extends Day[Seq[Turn], Int, Int](Year25, 1) {
       (Math.floorMod(next, totalDegrees), passes)
     }
 
-  override def partOne(input: Seq[Turn]): Int = positions(input).count(_._1 % totalDegrees == 0)
+  override def partOne(input: Seq[Turn]): Int = positions(input).count((position, _) => position == 0)
 
-  override def partTwo(input: Seq[Turn]): Int = positions(input).map(_._2).sum
+  override def partTwo(input: Seq[Turn]): Int = positions(input).map((_, passes) => passes).sum
 }
